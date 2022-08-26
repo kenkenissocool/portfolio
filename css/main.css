@@ -38,14 +38,18 @@ h2 {
     text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
     z-index: 2;
     position: relative;
-    font-family: "DIN 2014 Bold";
+    font-family: din-2014, sans-serif;
+font-weight: 700;
+font-style: normal;
 }
 h3 {
     font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 h4 {
     font-size: x-large;
-    font-family: "DIN 2014 Bold";
+    font-family: din-2014, sans-serif;
+font-weight: 700;
+font-style: normal;
 }
 p {
     font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
@@ -72,7 +76,9 @@ header nav ul {
     visibility: hidden;
 }
 header nav ul li {
-    font-family: "DIN 2014 Bold";
+    font-family: din-2014, sans-serif;
+font-weight: 700;
+font-style: normal;
     font-size: 1.5rem;
 	margin-bottom:20px;
 }
@@ -625,11 +631,15 @@ h2 {
     text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
     z-index: 2;
     position: relative;
-    font-family: "DIN 2014 Bold";
+    font-family: din-2014, sans-serif;
+font-weight: 700;
+font-style: normal;
 }
 h4 {
     font-size: medium;
-    font-family: "DIN 2014 Bold";
+    font-family: din-2014, sans-serif;
+font-weight: 700;
+font-style: normal;
 }
 .bg .corner .line {
     top: -14%;
@@ -637,7 +647,9 @@ h4 {
     left: 3%;
 }
 header nav ul li {
-    font-family: "DIN 2014 Bold";
+    font-family: din-2014, sans-serif;
+font-weight: 700;
+font-style: normal;
     font-size: 1.2rem;
 }
 .career .timeline .dashed {
@@ -706,7 +718,9 @@ h2 {
     text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
     z-index: 2;
     position: relative;
-    font-family: "DIN 2014 Bold";
+    font-family: din-2014, sans-serif;
+font-weight: 700;
+font-style: normal;
 }
 header .logor {
     width: 50px;
@@ -714,7 +728,9 @@ header .logor {
     background-color: rgba(239,119,121,1.00);
 }
 header nav ul li {
-    font-family: "DIN 2014 Bold";
+    font-family: din-2014, sans-serif;
+font-weight: 700;
+font-style: normal;
     font-size: 1rem;
     margin-bottom: -15px;
     /* [disabled]visibility: hidden; */
@@ -903,7 +919,9 @@ body {
     line-height: 2;
 }
 header nav ul li {
-    font-family: "DIN 2014 Bold";
+    font-family: din-2014, sans-serif;
+font-weight: 700;
+font-style: normal;
     font-size: 1rem;
     padding-right: 3%;
     padding-left: 3%;
