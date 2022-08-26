@@ -1,0 +1,1105 @@
+@charset "UTF-8";
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+body{
+    font-size: 1.2rem;/* 16px*/
+    line-height: 2;
+    overflow-x: hidden;
+}
+.container {
+    margin: 0 auto;
+    width: 82%;
+    text-align: center;
+}
+.sectitle {
+    position: relative;
+    display: inline-block;
+    margin-left: 10%;
+}
+.sectitle img {
+    position: absolute;
+    top: 28%;
+    left: -10%;
+    width: 75%;
+    z-index: 1;
+}
+h2 {
+    font-size: 60px;
+    text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
+    z-index: 2;
+    position: relative;
+    font-family: "DIN Alternate Bold";
+}
+h3 {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+h4 {
+    font-size: x-large;
+    font-family: "DIN Alternate Bold";
+}
+p {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-weight: 200;
+    padding-bottom: 0px;
+    margin-bottom: 5px;
+}
+header .logor {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(239,119,121,1.00);
+    visibility: hidden;
+}
+header nav  {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+header nav ul {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    margin-right: 8%;
+    visibility: hidden;
+}
+header nav ul li {
+    font-family: "DIN Alternate Bold";
+    font-size: 1.5rem;
+	margin-bottom:20px;
+}
+header nav li a{
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
+
+nav li.current a,
+nav li a:hover{
+	color:#0481A2;
+}
+
+nav li a::after {
+    content: '';
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    /*線の形状*/
+    width: 80%;
+    height: 2px;
+    background:#0481A2;
+    /*アニメーションの指定*/
+    transition: all .3s;
+    transform: scale(0, 1);/*X方向0、Y方向1*/
+    transform-origin: center top;/*上部中央基点*/
+}
+
+/*現在地とhoverの設定*/
+nav li.current a::after,
+nav li a:hover::after {
+    transform: scale(1, 1);/*X方向にスケール拡大*/
+}
+
+.mainv {
+    position: relative;
+    height: 56.25vw;
+}
+.mainv .hero {
+    display: flex;
+    height: 56.25vw;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding-top: 3%;
+}
+.mainv .hero .portrait {
+    width: 45%;
+}
+.mainv .hero .spportrait {
+    display: none;
+}
+.mainv .hero .hello {
+    width: 40%;
+    height: auto;
+    padding-top: 5%;
+}
+.mainv .bg img {
+    width: 20%;
+    position: absolute;
+}
+.bg .corner .line {
+    top: -7%;
+    width: 12%;
+    left: 2%;
+}
+.bg .sns img {
+    top: 85%;
+    left: 86%;
+    width: 9%;
+}
+.mainv .bg .lineone {
+    top: -3%;
+    width: 5%;
+    left: 12.5%;
+}
+.mainv .bg .linetwo {
+    width: 10%;
+    top: -20%;
+    left: 35%;
+}
+.mainv .bg .linethr {
+    width: 6%;
+    left: 9%;
+    top: -1%;
+}
+.mainv .bg .linefou {
+    width: 8%;
+    top: 68%;
+    left: 73%;
+}
+.mainv .bg .cirline {
+    left: 81%;
+    width: 1.5%;
+    top: 10%;
+}
+.mainv .bg .bigcir {
+    left: 87%;
+    top: 41%;
+    width: 8%;
+}
+.mainv .bg .doubcir {
+    width: 5%;
+    top: 64%;
+    left: 50%;
+}
+.mainv .bg .trian {
+    left: 67%;
+    top: 45%;
+    width: 1.5%;
+}
+.mainv .bg .ll {
+    width: 8%;
+    top: 7%;
+    left: 60.5%;
+}
+.mainv .bg .group {
+    width: 8%;
+    top: 60%;
+    left: -1%;
+}
+.mainv .bg .repeat {
+    top: 15%;
+    left: 24%;
+    width: 16%;
+}
+.mainv .bg .trione {
+    width: 2%;
+    top: 65%;
+    left: 94%;
+}
+.mainv .bg .tritwo {
+    width: 2%;
+    top: 67.5%;
+    left: 94%;
+}
+.mainv .bg .trithr {
+    width: 2%;
+    top: 70%;
+    left: 94%;
+}
+.dotsection {
+    background-image: url(../img/%E3%83%AA%E3%83%94%E3%83%BC%E3%83%88%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%207.png);
+    background-repeat: repeat;
+    background-size: cover;
+}
+.policy  {
+    padding-top: 5%;
+}
+.policy.container .sectitle {
+    margin-left: 0px;
+}
+.policy.container .sectitle img {
+    position: absolute;
+    left: 12%;
+}
+.policy.container .policies {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+/* CSS Document */
+
+.policy.container .pol {
+    width: 40%;
+    text-align: center;
+}
+.policies .pol .cat {
+    width: 22%;
+    margin: 0 auto;
+    display: block;
+}
+.policies .pol .illust {
+    width: 68%;
+    margin-bottom: 8%;
+    margin-top: 5%;
+}
+.pol .text p {
+    line-height: 222%;
+    font-weight: 200;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    margin-top: 7%;
+}
+.career .timeline {
+    position: relative;
+}
+.career .timeline .dashed {
+    width: 0.12%;
+    margin-left: 31%;
+}
+.career .timeline .event {
+    position: absolute;
+    left: 29.3%;
+}
+.career .timeline .event img {
+    width: 12vw;
+}
+.career .timeline .event p {
+    display: inherit;
+    margin-left: 100px;
+}
+.career .timeline .april {
+    position: absolute;
+    top: 8%;
+}
+.career .timeline .august {
+    position: absolute;
+    top: 30%;
+}
+.career .timeline .december {
+    position: absolute;
+    top: 48%;
+}
+.career .timeline .may {
+    position: absolute;
+    top: 71%;
+}
+.career .timeline .june {
+    position: absolute;
+    top: 86%;
+}
+.career .achievements h3 {
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 3%;
+    width: 73%;
+    font-weight: 400;
+    font-size: 40px;
+}
+.career .achievements .titles {
+    margin-top: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 73%;
+    padding-bottom: 10%;
+    margin-bottom: 1%;
+}
+.career .achievements .titles div {
+    display: flex;
+}
+#career .achievements .year   {
+    margin-right: 29px;
+}
+.career .achievements .titles p {
+    padding-top: 2%;
+    padding-bottom: 0%;
+    padding-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.profile {
+    height: 64vw;
+    position: relative;
+    margin-bottom: 8%;
+    /* [disabled]overflow-x: hidden; */
+}
+.profile .sectitle h3 {
+    position: absolute;
+    left: 80%;
+    top: 62%;
+    font-weight: 200;
+    text-shadow: -3px 3px 2px rgba(99,99,99,0.44);
+    font-family: Osaka-mono, "MS Gothic", monospace;
+    color: rgba(50,85,225,1.00);
+}
+.profile .textimg {
+    position: relative;
+    display: flex;
+    z-index: 2;
+}
+.profile .textimg .text {
+    width: 43%;
+    border-bottom-width: thin;
+    border-bottom-style: solid;
+    line-height: 160%;
+    margin-left: 7%;
+    padding-top: 2%;
+}
+.profile .textimg .text h4 {
+    background-color: rgba(255,255,255,1.00);
+    display: inline-block;
+}
+.profile .textimg .text p {
+    background-color: rgba(255,255,255,1.00);
+}
+.profile .textimg img {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    top: -20%;
+}
+.profile .linesbg {
+    position: relative;
+    top: 57%;
+}
+.profile .linesbg img {
+    width: 20%;
+}
+.profile .linesbg .one {
+    position: absolute;
+    left: -3%;
+    top: -16%;
+}
+.profile .linesbg .two {
+    left: 49%;
+    top: -245%;
+    position: absolute;
+}
+.profile .linesbg .thr {
+    position: absolute;
+    left: 29%;
+    top: 222%;
+}
+.profile .linesbg .fou {
+    position: absolute;
+    left: 84%;
+    top: -373%;
+}
+.profile .linesbg .fiv {
+    position: absolute;
+    left: 58%;
+    top: -278%;
+    width: 42%;
+}
+.profile .linesbg .six {
+    position: absolute;
+    left: -32%;
+    top: -433%;
+    width: 42%;
+}
+.profile .linesbg .sev {
+    position: absolute;
+    top: 156%;
+    left: -12%;
+    width: 40%;
+}
+.profile .linesbg .eig {
+    opacity: 0;
+}
+.profile .linesbg .nin {
+    position: absolute;
+    top: 10%;
+    left: 51%;
+    width: 42%;
+}
+.works   {
+    background-image: url(../img/%E3%83%9E%E3%82%B9%E3%82%AF%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%2028.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.works .sectitle {
+    margin-top: 3%;
+    float: right;
+    margin-right: 10%;
+    margin-bottom: 5%;
+}
+.works .figures {
+    display: flex;
+    margin-top: 3%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: space-between;
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+    width: 90%;
+}
+.works .figures img {
+    -webkit-box-shadow: -5px 5px 10px rgba(0,0,0,0.66);
+    box-shadow: -5px 5px 10px rgba(0,0,0,0.66);
+    border-radius: 10px;
+}
+.figures .work figcaption {
+    padding-top: 5%;
+    margin: 0;
+}
+.figures .work .category {
+    padding: 0;
+    font-weight: 250;
+    color: rgba(126,118,118,1.00);
+    margin-top: 10px;
+}
+.skills {
+    background-image: url(../img/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 56.25vw;
+}
+.skills .skillarea {
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 5%;
+    width: 80%;
+}
+.skills .skillarea img  {
+    width: 11%;
+    margin-left: 4.5%;
+    margin-right: 4.5%;
+    /* [disabled]height: 11%; */
+}
+.skills .skillarea .upper-skills {
+    display: flex;
+    margin-left: -5%;
+    margin-bottom: 10%;
+}
+.skills .skillarea .lower-skills {
+    justify-content: flex-end;
+    display: flex;
+    margin-right: -5%;
+}
+.skillarea .lower-skills .dw {
+    width: 13%;
+}
+.contact.container .sectitle {
+    margin-left: 0px;
+    margin-top: 10%;
+    margin-bottom: 9%;
+}
+.contact.container .sectitle img {
+    position: absolute;
+    left: 12%;
+}
+.contact.container h3 {
+    margin-bottom: 5%;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-weight: 300;
+}
+.goup {
+    margin-top: 10%;
+}
+footer {
+    height: 200px;
+    justify-content: center;
+    display: flex;
+    position: relative;
+}
+footer .logor {
+    /* [disabled]width: 100px; */
+    /* [disabled]height: 100px; */
+    position: absolute;
+    top: 90px;
+}
+footer .horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+footer .horizontal nav  {
+}
+footer .horizontal nav ul {
+    display: flex;
+}
+footer .horizontal nav ul li {
+    padding-right: 25px;
+    padding-left: 25px;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-weight: 200;
+}
+footer .horizontal img {
+    width: 32%;
+    /* [disabled]margin-right: 7%; */
+}
+
+@media (max-width:1200px){
+.container {
+    margin: 0 auto;
+    width: 85%;
+}
+body {
+    font-size: 1.2rem;/* 16px*/
+    line-height: 2;
+}
+.bg .corner .line {
+    top: -11%;
+    width: 13%;
+    left: 2%;
+}
+/* CSS Document */
+
+.policy.containermod .pol {
+    width: 47%;
+    text-align: center;
+}
+.career .timeline .event p {
+    display: inherit;
+    margin-left: 100px;
+}
+.career .achievements .titles {
+    margin-top: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 82%;
+    padding-bottom: 10%;
+    margin-bottom: 1%;
+}
+.profile .textimg .text p {
+    background-color: rgba(255,255,255,1.00);
+    font-size: 1rem;
+}
+.skills .skillarea {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 5%;
+    width: 80%;
+    margin-top: 0%;
+}
+footer {
+    height: 150px;
+    justify-content: center;
+    display: flex;
+    position: relative;
+}
+footer .logor {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 70px;
+}
+footer .horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+footer .horizontal nav ul li {
+    padding-right: 6%;
+    padding-left: 6%;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-weight: 200;
+}
+footer .horizontal img {
+    width: 29%;
+    /* [disabled]margin-right: 7%; */
+}
+}
+
+@media (max-width:960px){
+body {
+    font-size: 0.8rem;/* 16px*/
+    line-height: 2;
+}
+h2 {
+    font-size: 39px;
+    text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
+    z-index: 2;
+    position: relative;
+    font-family: "DIN Alternate Bold";
+}
+h4 {
+    font-size: medium;
+    font-family: "DIN Alternate Bold";
+}
+.bg .corner .line {
+    top: -14%;
+    width: 13%;
+    left: 3%;
+}
+header nav ul li {
+    font-family: "DIN Alternate Bold";
+    font-size: 1.2rem;
+}
+.career .timeline .dashed {
+    width: 0.17%;
+    margin-left: 26%;
+}
+.career .timeline .event {
+    position: absolute;
+    left: 24%;
+}
+.career .timeline .event img {
+    width: 15vw;
+}
+.career .timeline .event p {
+    display: inherit;
+    margin-left: 55px;
+}
+.career .achievements h3 {
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 3%;
+    width: 85%;
+    font-weight: 400;
+    font-size: 20px;
+}
+.works .figures {
+    display: flex;
+    margin-top: 3%;
+    justify-content: space-between;
+    padding-bottom: 5%;
+    margin-bottom: 4%;
+    width: 100%;
+}
+.works .figures .work {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.works .figures img {
+    -webkit-box-shadow: -5px 5px 10px rgba(0,0,0,0.66);
+    box-shadow: -5px 5px 10px rgba(0,0,0,0.66);
+    border-radius: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.contact.container h3 {
+    margin-bottom: 5%;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 1.4rem;
+}
+footer .horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+}
+
+@media (max-width:720px){
+h2 {
+    font-size: 30px;
+    text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
+    z-index: 2;
+    position: relative;
+    font-family: "DIN Alternate Bold";
+}
+header .logor {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(239,119,121,1.00);
+}
+header nav ul li {
+    font-family: "DIN Alternate Bold";
+    font-size: 1rem;
+    margin-bottom: -15px;
+    /* [disabled]visibility: hidden; */
+}
+header nav ul {
+    visibility: hidden;
+}
+.bg .corner .line {
+    top: -9%;
+    width: 13%;
+    left: 3%;
+}
+.policy.container .policies {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    flex-flow: column;
+}
+/* CSS Document */
+
+.policy.container .pol {
+    width: 85%;
+    text-align: center;
+    margin-bottom: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.career .sectitle  {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+.career .sectitle img {
+    position: absolute;
+    left: 12%;
+}
+.career .timeline .dashed {
+    width: 0.17%;
+    margin-left: 17%;
+}
+.career .timeline .event {
+    position: absolute;
+    left: 15%;
+}
+.career .timeline .event img {
+    width: 15vw;
+}
+.profile {
+    height: 115vw;
+    position: relative;
+    margin-bottom: 8%;
+}
+.profile .textimg {
+    position: relative;
+    display: flex;
+    z-index: 2;
+}
+.profile .textimg .text {
+    width: 45%;
+    border-bottom-width: thin;
+    border-bottom-style: solid;
+    line-height: 160%;
+    margin-left: 10%;
+    padding-top: 7%;
+}
+.profile .textimg img {
+    position: absolute;
+    width: 65%;
+    left: 36%;
+    top: 55%;
+}
+.profile .linesbg .fou {
+    position: absolute;
+    left: 84%;
+    top: -640%;
+}
+.profile .linesbg .fiv {
+    position: absolute;
+    left: 58%;
+    top: -515%;
+    width: 42%;
+}
+.profile .linesbg .six {
+    position: absolute;
+    left: -32%;
+    top: -655%;
+    width: 42%;
+}
+.profile .linesbg .sev {
+    position: absolute;
+    top: 285%;
+    left: -12%;
+    width: 40%;
+}
+.profile .linesbg .nin {
+    position: absolute;
+    top: 200%;
+    left: 51%;
+    width: 42%;
+}
+.works {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.works .sectitle {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    float: none;
+}
+.works .figures {
+    display: flex;
+    margin-top: 3%;
+    justify-content: space-between;
+    padding-bottom: 10%;
+    margin-bottom: 4%;
+    width: 65%;
+    flex-flow: column;
+}
+.works .figures .work {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 15%;
+}
+.figures .work figcaption {
+    padding-top: 4%;
+    margin: 0;
+}
+.figures .work .category {
+    padding: 0;
+    font-weight: 250;
+    color: rgba(126,118,118,1.00);
+    margin-top: 5px;
+}
+.skills {
+    background-image: url(../img/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 56.25vw;
+}
+.skills .skillarea {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 5%;
+    width: 80%;
+    margin-top: 0%;
+}
+.skills .skillarea .upper-skills {
+    display: flex;
+    margin-left: -5%;
+    margin-bottom: 10%;
+}
+.skills .skillarea .lower-skills {
+    justify-content: flex-end;
+    display: flex;
+    margin-right: -5%;
+}
+footer {
+    height: 100px;
+    justify-content: center;
+    display: flex;
+    position: relative;
+}
+footer .logor {
+    /* [disabled]width: 50px; */
+    /* [disabled]height: 50px; */
+    position: absolute;
+    top: 40px;
+}
+.containermod {
+    margin: 0 auto;
+    width: 85%;
+    text-align: center;
+}
+}
+
+@media (max-width:520px){
+body {
+    font-size: 7px;/* 16px*/
+    line-height: 2;
+}
+header nav ul li {
+    font-family: "DIN Alternate Bold";
+    font-size: 1rem;
+    padding-right: 3%;
+    padding-left: 3%;
+}
+header nav ul {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    margin-right: 13%;
+    visibility: hidden;
+}
+.mainv {
+    position: relative;
+    height: 100vh;
+}
+.mainv .hero {
+    display: flex;
+    height: 56.25vw;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding-top: 3%;
+}
+.mainv .hero .portrait {
+    width: 45%;
+    display: none;
+}
+.mainv .hero .spportrait {
+    display: inline;
+    position: absolute;
+    padding-top: 25%;
+    padding-left: 0%;
+    margin-left: -12%;
+}
+.mainv .hero .hello {
+    width: 72%;
+    height: auto;
+    padding-top: 5.2%;
+    position: relative;
+    z-index: 2;
+}
+.mainv .bg img {
+    width: 20%;
+    position: absolute;
+    display: none;
+}
+.bg .corner .line {
+    top: 70%;
+    width: 20%;
+    left: 2%;
+    display: inline;
+    transform: rotate( -90deg );
+}
+.bg .sns img {
+    top: 76%;
+    left: 78%;
+    width: 16%;
+    display: inline;
+}
+.mainv .bg .lineone {
+    top: 66%;
+    width: 12%;
+    left: 19.5%;
+    display: inline;
+}
+.mainv .bg .linethr {
+    width: 14%;
+    left: 13%;
+    top: 67%;
+    display: inline;
+}
+.mainv .bg .linefou {
+    width: 14%;
+    top: 27%;
+    left: 76%;
+    display: inline;
+}
+.mainv .bg .ll {
+    width: 17%;
+    top: -1%;
+    left: 9.5%;
+    display: inline;
+}
+.mainv .bg .cirline {
+    left: 77%;
+    width: 3%;
+    top: 7%;
+    display: inline;
+}
+.mainv .bg .trian {
+    left: 74%;
+    top: 22%;
+    width: 3%;
+    display: inline;
+}
+.policy.container .policies {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+    margin-bottom: 8%;
+    flex-flow: column;
+}
+.career .timeline .event p {
+    display: inherit;
+    margin-left: 35px;
+}
+.career .timeline .event img {
+    width: 25vw;
+}
+.career .timeline .event {
+    position: absolute;
+    left: 11.5%;
+}
+.career .timeline .dashed {
+    width: 0.4%;
+    margin-left: 15%;
+}
+.profile {
+    height: 120vw;
+    position: relative;
+    margin-bottom: 20%;
+}
+.profile .linesbg .sev {
+    position: absolute;
+    top: 454%;
+    left: -12%;
+    width: 40%;
+}
+.profile .textimg .text p {
+    background-color: rgba(255,255,255,1.00);
+    font-size: 8px;
+}
+.profile .textimg .text {
+    width: 81%;
+    border-bottom-width: thin;
+    border-bottom-style: solid;
+    line-height: 170%;
+    margin: 0 auto;
+    padding-top: 13%;
+}
+.profile .textimg img {
+    position: absolute;
+    width: 70%;
+    left: 32%;
+    top: 45%;
+    display: none;
+}
+.works .figures .work {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 10%;
+}
+.skills {
+    background-image: url(../img/skillsspbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 107.25vw;
+}
+.skills .skillarea .upper-skills {
+    display: flex;
+    margin-left: 0%;
+    margin-bottom: 6%;
+}
+.skills .skillarea .lower-skills {
+    justify-content: flex-end;
+    display: flex;
+    margin-right: 0%;
+}
+.contact.container h3 {
+    margin-bottom: 5%;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 1rem;
+}
+footer .horizontal nav ul li {
+    padding-right: 6%;
+    padding-left: 6%;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-weight: 200;
+    display: none;
+}
+footer .horizontal img {
+    width: 29%;
+    /* [disabled]margin-right: 7%; */
+    display: none;
+}
+footer {
+    height: 66px;
+    justify-content: center;
+    display: flex;
+    position: relative;
+}
+footer .logor {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 30px;
+}
+.skills .skillarea {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 5%;
+    width: 100%;
+    margin-top: 22%;
+}
+}
