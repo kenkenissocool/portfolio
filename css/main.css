@@ -1,10 +1,10 @@
 @charset "UTF-8";
 @font-face {
-font-family: 'DIN Alternate Bold';
-src:url("../font/DIN Alternate Bold.otf")format("opentype"),
-	url("../font/DIN Alternate Bold.woff2")format("woff2"),
-    url("../font/DIN Alternate Bold.woff") format("woff"),
-	url("../font/DIN Alternate Bold.ttf") format("truetype"),
+font-family: 'DIN 2014 Bold';
+src:url("../font/DIN 2014 Bold.otf")format("opentype"),
+	url("../font/DIN 2014 Bold.woff2")format("woff2"),
+    url("../font/DIN 2014 Bold.woff") format("woff"),
+	url("../font/DIN 2014 Bold.ttf") format("truetype"),
 	;
 }
 html{
@@ -38,14 +38,14 @@ h2 {
     text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
     z-index: 2;
     position: relative;
-    font-family: "DIN Alternate Bold";
+    font-family: "DIN 2014 Bold";
 }
 h3 {
     font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 h4 {
     font-size: x-large;
-    font-family: "DIN Alternate Bold";
+    font-family: "DIN 2014 Bold";
 }
 p {
     font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
@@ -72,7 +72,7 @@ header nav ul {
     visibility: hidden;
 }
 header nav ul li {
-    font-family: "DIN Alternate Bold";
+    font-family: "DIN 2014 Bold";
     font-size: 1.5rem;
 	margin-bottom:20px;
 }
@@ -625,11 +625,11 @@ h2 {
     text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
     z-index: 2;
     position: relative;
-    font-family: "DIN Alternate Bold";
+    font-family: "DIN 2014 Bold";
 }
 h4 {
     font-size: medium;
-    font-family: "DIN Alternate Bold";
+    font-family: "DIN 2014 Bold";
 }
 .bg .corner .line {
     top: -14%;
@@ -637,7 +637,7 @@ h4 {
     left: 3%;
 }
 header nav ul li {
-    font-family: "DIN Alternate Bold";
+    font-family: "DIN 2014 Bold";
     font-size: 1.2rem;
 }
 .career .timeline .dashed {
@@ -706,7 +706,7 @@ h2 {
     text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
     z-index: 2;
     position: relative;
-    font-family: "DIN Alternate Bold";
+    font-family: "DIN 2014 Bold";
 }
 header .logor {
     width: 50px;
@@ -714,7 +714,7 @@ header .logor {
     background-color: rgba(239,119,121,1.00);
 }
 header nav ul li {
-    font-family: "DIN Alternate Bold";
+    font-family: "DIN 2014 Bold";
     font-size: 1rem;
     margin-bottom: -15px;
     /* [disabled]visibility: hidden; */
@@ -903,7 +903,7 @@ body {
     line-height: 2;
 }
 header nav ul li {
-    font-family: "DIN Alternate Bold";
+    font-family: "DIN 2014 Bold";
     font-size: 1rem;
     padding-right: 3%;
     padding-left: 3%;
