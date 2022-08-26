@@ -1,12 +1,4 @@
 @charset "UTF-8";
-@font-face {
-font-family: 'DIN 2014 Bold';
-src:url("../font/DIN 2014 Bold.otf")format("opentype"),
-	url("../font/DIN 2014 Bold.woff2")format("woff2"),
-    url("../font/DIN 2014 Bold.woff") format("woff"),
-	url("../font/DIN 2014 Bold.ttf") format("truetype"),
-	;
-}
 html{
     font-size: 62.5%;
     /* [disabled]overflow-x: hidden; */
