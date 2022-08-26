@@ -16,6 +16,9 @@ body{
     line-height: 2;
     overflow-x: hidden;
 }
+main {
+    overflow-x: hidden;
+}
 .container {
     margin: 0 auto;
     width: 82%;
