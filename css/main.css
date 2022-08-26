@@ -52,6 +52,9 @@ p {
     padding-bottom: 0px;
     margin-bottom: 5px;
 }
+header {
+    overflow-x: hidden;
+}
 header .logor {
     width: 100px;
     height: 100px;
