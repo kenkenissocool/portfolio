@@ -9,7 +9,7 @@ src:url("../font/DIN 2014 Bold.otf")format("opentype"),
 }
 html{
     font-size: 62.5%;
-    overflow-x: hidden;
+    /* [disabled]overflow-x: hidden; */
 }
 body{
     font-size: 1.2rem;/* 16px*/
@@ -87,33 +87,6 @@ header nav li a{
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 10px;
-}
-
-nav li.current a,
-nav li a:hover{
-	color:#0481A2;
-}
-
-nav li a::after {
-    content: '';
-    /*絶対配置で線の位置を決める*/
-    position: absolute;
-    bottom: 0;
-    left: 10%;
-    /*線の形状*/
-    width: 80%;
-    height: 2px;
-    background:#0481A2;
-    /*アニメーションの指定*/
-    transition: all .3s;
-    transform: scale(0, 1);/*X方向0、Y方向1*/
-    transform-origin: center top;/*上部中央基点*/
-}
-
-/*現在地とhoverの設定*/
-nav li.current a::after,
-nav li a:hover::after {
-    transform: scale(1, 1);/*X方向にスケール拡大*/
 }
 
 .mainv {
@@ -726,17 +699,16 @@ header .logor {
     width: 50px;
     height: 50px;
     background-color: rgba(239,119,121,1.00);
+    visibility: hidden;
 }
 header nav ul li {
     font-family: din-2014, sans-serif;
-font-weight: 600;
-font-style: normal;
+    font-weight: 600;
+    font-style: normal;
     font-size: 1rem;
     margin-bottom: -15px;
-    /* [disabled]visibility: hidden; */
 }
 header nav ul {
-    visibility: hidden;
 }
 .bg .corner .line {
     top: -9%;
@@ -1037,11 +1009,11 @@ header nav ul {
 }
 .career .timeline .event {
     position: absolute;
-    left: 11.5%;
+    left: 5.5%;
 }
 .career .timeline .dashed {
     width: 0.4%;
-    margin-left: 15%;
+    margin-left: 9%;
 }
 .profile {
     height: 120vw;
@@ -1131,5 +1103,14 @@ footer .logor {
     margin-bottom: 5%;
     width: 100%;
     margin-top: 22%;
+}
+/* CSS Document */
+
+.policy.container .pol {
+    width: 90%;
+    text-align: center;
+    margin-bottom: 10%;
+    margin-left: auto;
+    margin-right: auto;
 }
 }
