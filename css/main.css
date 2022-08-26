@@ -35,12 +35,12 @@ body{
 }
 h2 {
     font-size: 60px;
-    text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
+    text-shadow: -9px 8px 8px rgba(99,99,99,0.29);
     z-index: 2;
     position: relative;
     font-family: din-2014, sans-serif;
-font-weight: 600;
-font-style: normal;
+    font-weight: 600;
+    font-style: normal;
 }
 h3 {
     font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
@@ -845,6 +845,10 @@ header nav ul {
     margin-left: 0px;
     float: none;
 }
+.works .sectitle img {
+    position: absolute;
+    left: 12%;
+}
 .works .figures {
     display: flex;
     margin-top: 3%;
@@ -915,7 +919,7 @@ footer .logor {
 
 @media (max-width:520px){
 body {
-    font-size: 7px;/* 16px*/
+    font-size: 9px;/* 16px*/
     line-height: 2;
 }
 header nav ul li {
@@ -1052,13 +1056,13 @@ header nav ul {
 }
 .profile .textimg .text p {
     background-color: rgba(255,255,255,1.00);
-    font-size: 8px;
+    font-size: 10px;
 }
 .profile .textimg .text {
     width: 81%;
     border-bottom-width: thin;
     border-bottom-style: solid;
-    line-height: 170%;
+    line-height: 15px;
     margin: 0 auto;
     padding-top: 13%;
 }
