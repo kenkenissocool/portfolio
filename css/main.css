@@ -91,6 +91,9 @@ header nav li a{
     position: relative;
     height: 56.25vw;
 }
+.mainv .bg {
+    position: relative;
+}
 .mainv .hero {
     display: flex;
     height: 56.25vw;
