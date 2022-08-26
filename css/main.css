@@ -1,7 +1,11 @@
 @charset "UTF-8";
 @font-face {
 font-family: 'DIN Alternate Bold';
-src:url("../font/DIN Alternate Bold.ttf") format("truetype");
+src:url("../font/DIN Alternate Bold.otf")format("opentype"),
+	url("../font/DIN Alternate Bold.woff2")format("woff2"),
+    url("../font/DIN Alternate Bold.woff") format("woff"),
+	url("../font/DIN Alternate Bold.ttf") format("truetype"),
+	;
 }
 html{
     font-size: 62.5%;
