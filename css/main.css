@@ -10,7 +10,7 @@ body{
     overflow-x: hidden;
 }
 main {
-    overflow-x: hidden;
+    /* [disabled]overflow-x: hidden; */
 }
 .container {
     margin: 0 auto;
@@ -892,6 +892,9 @@ body {
     font-size: 9px;/* 16px*/
     line-height: 2;
 }
+main {
+    overflow-x: hidden;
+}
 header nav ul li {
     font-family: din-2014, sans-serif;
 font-weight: 600;
@@ -1003,6 +1006,15 @@ header nav ul {
     margin-bottom: 8%;
     flex-flow: column;
 }
+/* CSS Document */
+
+.policy.container .pol {
+    width: 90%;
+    text-align: center;
+    margin-bottom: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
 .career .timeline .event p {
     display: inherit;
     margin-left: 35px;
@@ -1106,14 +1118,5 @@ footer .logor {
     margin-bottom: 5%;
     width: 100%;
     margin-top: 22%;
-}
-/* CSS Document */
-
-.policy.container .pol {
-    width: 90%;
-    text-align: center;
-    margin-bottom: 10%;
-    margin-left: auto;
-    margin-right: auto;
 }
 }
