@@ -91,9 +91,6 @@ header nav li a{
     position: relative;
     height: 56.25vw;
 }
-.mainv .bg {
-    position: relative;
-}
 .mainv .hero {
     display: flex;
     height: 56.25vw;
@@ -920,6 +917,7 @@ header nav ul {
     justify-content: center;
     position: relative;
     padding-top: 3%;
+    top: -100vh;
 }
 .mainv .hero .portrait {
     width: 45%;
@@ -938,6 +936,10 @@ header nav ul {
     padding-top: 5.2%;
     position: relative;
     z-index: 2;
+}
+.mainv .bg {
+    position: relative;
+    height: 100vh;
 }
 .mainv .bg img {
     width: 20%;
