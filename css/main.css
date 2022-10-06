@@ -1,16 +1,12 @@
 @charset "UTF-8";
-
 html{
     font-size: 62.5%;
-    /* [disabled]overflow-x: hidden; */
+    overflow-x: hidden;
 }
 body{
     font-size: 1.2rem;/* 16px*/
     line-height: 2;
     overflow-x: hidden;
-}
-main {
-    /* [disabled]overflow-x: hidden; */
 }
 .container {
     margin: 0 auto;
@@ -31,30 +27,23 @@ main {
 }
 h2 {
     font-size: 60px;
-    text-shadow: -9px 8px 8px rgba(99,99,99,0.29);
+    text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
     z-index: 2;
     position: relative;
-    font-family: din-2014, sans-serif;
-    font-weight: 600;
-    font-style: normal;
+    font-family: "DIN Alternate Bold";
 }
 h3 {
     font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 h4 {
     font-size: x-large;
-    font-family: din-2014, sans-serif;
-font-weight: 600;
-font-style: normal;
+    font-family: "DIN Alternate Bold";
 }
 p {
     font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
     font-weight: 200;
     padding-bottom: 0px;
     margin-bottom: 5px;
-}
-header {
-    overflow-x: hidden;
 }
 header .logor {
     width: 100px;
@@ -75,9 +64,7 @@ header nav ul {
     visibility: hidden;
 }
 header nav ul li {
-    font-family: din-2014, sans-serif;
-font-weight: 600;
-font-style: normal;
+    font-family: "DIN Alternate Bold";
     font-size: 1.5rem;
 	margin-bottom:20px;
 }
@@ -86,6 +73,33 @@ header nav li a{
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 10px;
+}
+
+nav li.current a,
+nav li a:hover{
+	color:#0481A2;
+}
+
+nav li a::after {
+    content: '';
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    /*線の形状*/
+    width: 80%;
+    height: 2px;
+    background:#0481A2;
+    /*アニメーションの指定*/
+    transition: all .3s;
+    transform: scale(0, 1);/*X方向0、Y方向1*/
+    transform-origin: center top;/*上部中央基点*/
+}
+
+/*現在地とhoverの設定*/
+nav li.current a::after,
+nav li a:hover::after {
+    transform: scale(1, 1);/*X方向にスケール拡大*/
 }
 
 .mainv {
@@ -102,6 +116,8 @@ header nav li a{
 }
 .mainv .hero .portrait {
     width: 45%;
+    margin-left: -4%;
+    margin-right: 4%;
 }
 .mainv .hero .spportrait {
     display: none;
@@ -371,7 +387,7 @@ header nav li a{
 }
 .profile .linesbg .fou {
     position: absolute;
-    left: 80%;
+    left: 84%;
     top: -373%;
 }
 .profile .linesbg .fiv {
@@ -603,15 +619,11 @@ h2 {
     text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
     z-index: 2;
     position: relative;
-    font-family: din-2014, sans-serif;
-font-weight: 600;
-font-style: normal;
+    font-family: "DIN Alternate Bold";
 }
 h4 {
     font-size: medium;
-    font-family: din-2014, sans-serif;
-font-weight: 600;
-font-style: normal;
+    font-family: "DIN Alternate Bold";
 }
 .bg .corner .line {
     top: -14%;
@@ -619,9 +631,7 @@ font-style: normal;
     left: 3%;
 }
 header nav ul li {
-    font-family: din-2014, sans-serif;
-font-weight: 600;
-font-style: normal;
+    font-family: "DIN Alternate Bold";
     font-size: 1.2rem;
 }
 .career .timeline .dashed {
@@ -690,24 +700,21 @@ h2 {
     text-shadow: -10px 9px 7px rgba(99,99,99,0.44);
     z-index: 2;
     position: relative;
-    font-family: din-2014, sans-serif;
-font-weight: 600;
-font-style: normal;
+    font-family: "DIN Alternate Bold";
 }
 header .logor {
     width: 50px;
     height: 50px;
     background-color: rgba(239,119,121,1.00);
-    visibility: hidden;
 }
 header nav ul li {
-    font-family: din-2014, sans-serif;
-    font-weight: 600;
-    font-style: normal;
+    font-family: "DIN Alternate Bold";
     font-size: 1rem;
     margin-bottom: -15px;
+    /* [disabled]visibility: hidden; */
 }
 header nav ul {
+    visibility: hidden;
 }
 .bg .corner .line {
     top: -9%;
@@ -726,7 +733,7 @@ header nav ul {
 .policy.container .pol {
     width: 85%;
     text-align: center;
-    margin-bottom: 16%;
+    margin-bottom: 10%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -777,6 +784,7 @@ header nav ul {
 }
 .profile .linesbg .fou {
     position: absolute;
+    left: 84%;
     top: -640%;
 }
 .profile .linesbg .fiv {
@@ -814,10 +822,6 @@ header nav ul {
     margin-bottom: 0px;
     margin-left: 0px;
     float: none;
-}
-.works .sectitle img {
-    position: absolute;
-    left: 12%;
 }
 .works .figures {
     display: flex;
@@ -889,16 +893,11 @@ footer .logor {
 
 @media (max-width:520px){
 body {
-    font-size: 9px;/* 16px*/
+    font-size: 7px;/* 16px*/
     line-height: 2;
 }
-main {
-    overflow-x: hidden;
-}
 header nav ul li {
-    font-family: din-2014, sans-serif;
-font-weight: 600;
-font-style: normal;
+    font-family: "DIN Alternate Bold";
     font-size: 1rem;
     padding-right: 3%;
     padding-left: 3%;
@@ -921,7 +920,6 @@ header nav ul {
     justify-content: center;
     position: relative;
     padding-top: 3%;
-    top: -100vh;
 }
 .mainv .hero .portrait {
     width: 45%;
@@ -940,10 +938,6 @@ header nav ul {
     padding-top: 5.2%;
     position: relative;
     z-index: 2;
-}
-.mainv .bg {
-    position: relative;
-    height: 100vh;
 }
 .mainv .bg img {
     width: 20%;
@@ -1006,15 +1000,6 @@ header nav ul {
     margin-bottom: 8%;
     flex-flow: column;
 }
-/* CSS Document */
-
-.policy.container .pol {
-    width: 90%;
-    text-align: center;
-    margin-bottom: 10%;
-    margin-left: auto;
-    margin-right: auto;
-}
 .career .timeline .event p {
     display: inherit;
     margin-left: 35px;
@@ -1024,11 +1009,11 @@ header nav ul {
 }
 .career .timeline .event {
     position: absolute;
-    left: 5.5%;
+    left: 11.5%;
 }
 .career .timeline .dashed {
     width: 0.4%;
-    margin-left: 9%;
+    margin-left: 15%;
 }
 .profile {
     height: 120vw;
@@ -1043,13 +1028,13 @@ header nav ul {
 }
 .profile .textimg .text p {
     background-color: rgba(255,255,255,1.00);
-    font-size: 9px;
+    font-size: 8px;
 }
 .profile .textimg .text {
     width: 81%;
     border-bottom-width: thin;
     border-bottom-style: solid;
-    line-height: 15px;
+    line-height: 170%;
     margin: 0 auto;
     padding-top: 13%;
 }
@@ -1107,7 +1092,7 @@ footer {
     position: relative;
 }
 footer .logor {
-    width: 100px;
+    width: 50px;
     height: 50px;
     position: absolute;
     top: 30px;
