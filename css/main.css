@@ -212,7 +212,7 @@ nav li a:hover::after {
     left: 94%;
 }
 .dotsection {
-    background-image: url(../img/%E3%83%AA%E3%83%94%E3%83%BC%E3%83%88%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%207.png);
+    background-image: url(../img/repeat-grid-7.png);
     background-repeat: repeat;
     background-size: cover;
 }
@@ -418,7 +418,7 @@ nav li a:hover::after {
     width: 42%;
 }
 .works   {
-    background-image: url(../img/%E3%83%9E%E3%82%B9%E3%82%AF%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%2028.png);
+    background-image: url(../img/mask-group-28.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
