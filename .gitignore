@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+.preview/
+
+# Private source document; selected portfolio media is published separately.
+/assets/Portfolio2024.pdf
