@@ -4,7 +4,11 @@ Approved direction: September 27, 2026. Y2K / acid / hyperpop; pearlescent auror
 
 ## Artwork
 
-The hero chrome was upgraded on September 28, 2026 to a procedural real-time 3D sculpture in `js/liquid.js`. Nine tapered, ribbed surfaces intertwine with open negative spaces. A coherent vertex deformation bends the mesh and updates its normals; a generated studio environment produces iridescent metallic reflections. The original transparent raster, generated with the built-in image-generation tool, is retained as the loading/WebGL fallback. The black star matrix is in front of both versions. The four-point star matrix and orbital lines are native code/SVG. No reference music-video frames are reused in the site.
+The hero chrome is a single image-derived 3D sculpture in `js/liquid.js`. Its outline comes from the approved transparent artwork. The offline generator constructs a closed volume with rounded thickness, shallow folds and the image's negative spaces, then verifies one connected component and two faces per edge. The original artwork supplies baked reflection detail, blended with live iridescent lighting. This preserves the reference's detailed highlights rather than replacing them with generic procedural chrome. The reconstruction is designed for the hero's shallow viewing angle; it does not infer hidden geometry from the image.
+
+Animation expands and contracts the shared body and tips in a continuous radial field (roughly 15–25% at the longest tips), with a smaller central breath and minimal overall rotation. It does not animate independent tubes. The black four-point star stays in front. The original raster remains the loading/WebGL fallback.
+
+The four-point star matrix and orbital lines are native code/SVG. No reference music-video frames are reused in the site.
 
 Asset: `assets/chrome-sculpture.png`.
 

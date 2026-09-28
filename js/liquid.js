@@ -1,15 +1,29 @@
 import * as THREE from './vendor/three.module.js';
 
-// A procedural sculpture: closed, tapered metal surfaces, not an animated image.
+// Closed image-derived sculpture with a coherent, breathing 3D surface.
 const hero = document.querySelector('.hero');
 const canvas = document.querySelector('.liquid-canvas');
 
-function createLiquid() {
+async function createLiquid() {
+  const response = await fetch(new URL("../assets/models/liquid-sculpture.bin?v=reference-2", import.meta.url), { cache: "no-cache" });
+  if (!response.ok) throw new Error("Unable to load liquid mesh");
+  const meshData = await response.arrayBuffer();
+  const header = new DataView(meshData);
+  if (header.getUint32(0, true) !== 0x3444514c) throw new Error("Invalid liquid mesh");
+  const vertexCount = header.getUint32(4, true), indexCount = header.getUint32(8, true);
+  const reference = await new THREE.TextureLoader().loadAsync(new URL('../assets/chrome-sculpture.png',import.meta.url).href);
+  reference.colorSpace = THREE.SRGBColorSpace;
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
   renderer.setClearColor(0x000000, 0);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.15;
+  renderer.toneMappingExposure = 1.1;
   const scene = new THREE.Scene();
+  const key = new THREE.PointLight(0xffffff, 38);
+  key.position.set(-3,4,5);
+  scene.add(key);
+  const rim = new THREE.PointLight(0xffffff, 24);
+  rim.position.set(3,-2,4);
+  scene.add(rim);
   const camera = new THREE.PerspectiveCamera(34, 1, .1, 50);
   camera.position.set(0, 0, 11);
   const sculpture = new THREE.Group();
@@ -22,13 +36,13 @@ function createLiquid() {
   studio.width = 2048;
   studio.height = 1024;
   const ctx = studio.getContext('2d');
-  ctx.fillStyle = '#0c1117';
+  ctx.fillStyle = '#383c43';
   ctx.fillRect(0, 0, 2048, 1024);
   const panels = [
     [30, 160, 250, 680, '#edfaff'], [390, 40, 45, 900, '#ffffff'],
-    [480, 100, 230, 820, '#bea5ff'], [730, 90, 95, 780, '#fbfff2'],
-    [940, 120, 330, 740, '#d9fff0'], [1295, 50, 35, 920, '#ffffff'],
-    [1450, 80, 200, 800, '#fff1e9'], [1720, 190, 90, 620, '#e4ff83'],
+    [480, 100, 150, 820, '#ee86ff'], [730, 90, 95, 780, '#fbfff2'],
+    [940, 120, 240, 740, '#9bffff'], [1295, 50, 35, 920, '#ffffff'],
+    [1450, 80, 200, 800, '#fff1e9'], [1720, 190, 90, 620, '#eaff36'],
     [1900, 50, 26, 910, '#ffffff']
   ];
   for (const [x, y, w, h, color] of panels) {
@@ -44,110 +58,101 @@ function createLiquid() {
   ctx.fillRect(0, 30, 2048, 55);
   ctx.fillStyle = '#939cb0';
   ctx.fillRect(0, 890, 2048, 60);
-  const environment = new THREE.CanvasTexture(studio);
+  // Narrow saturated strips catch the curved folds like spectral reflections.
+  for (const [left,width] of [[250,95],[650,85],[1190,100],[1590,75],[1800,65]]) {
+    const spectral=ctx.createLinearGradient(left,0,left+width,0);
+    for (const [stop,color] of [[0,'#ffffff'],[.15,'#49eaff'],[.35,'#7881ff'],[.5,'#ff56e9'],[.68,'#ffad3a'],[.84,'#eeff52'],[1,'#ffffff']]) spectral.addColorStop(stop,color);
+    ctx.fillStyle=spectral;
+    ctx.fillRect(left,160,width,700);
+  }
+  const pixels = ctx.getImageData(0,0,studio.width,studio.height).data;
+  const hdr = new Float32Array(pixels.length);
+  for (let i=0;i<pixels.length;i+=4) {
+    const luminance = Math.max(pixels[i],pixels[i+1],pixels[i+2])/255;
+    const intensity = .3 + 5.0*Math.pow(luminance,4);
+    for (let channel=0;channel<3;channel++) {
+      const c = pixels[i+channel]/255;
+      hdr[i+channel] = (c <= .04045 ? c/12.92 : Math.pow((c+.055)/1.055,2.4))*intensity;
+    }
+    hdr[i+3]=1;
+  }
+  const environment = new THREE.DataTexture(hdr,studio.width,studio.height,THREE.RGBAFormat,THREE.FloatType);
   environment.mapping = THREE.EquirectangularReflectionMapping;
-  environment.colorSpace = THREE.SRGBColorSpace;
+  environment.colorSpace = THREE.LinearSRGBColorSpace;
+  environment.needsUpdate = true;
   const pmrem = new THREE.PMREMGenerator(renderer);
   let environmentTarget = pmrem.fromEquirectangular(environment);
   scene.environment = environmentTarget.texture;
   pmrem.dispose();
 
   const metal = new THREE.MeshPhysicalMaterial({
-    color: 0xe3e7ec, metalness: 1, roughness: .11,
-    iridescence: 1, iridescenceIOR: 1.5, iridescenceThicknessRange: [180, 480],
-    clearcoat: 1, clearcoatRoughness: .12, envMapIntensity: 1.8
+    color: 0xe3e7ec, metalness: 1, roughness: .085,
+    iridescence: .92, iridescenceIOR: 1.8, iridescenceThicknessRange: [180, 480],
+    clearcoat: 1, clearcoatRoughness: .06, envMapIntensity: 1.0
   });
-  // Deform in object space; use the deformation's local tangent derivatives to
-  // update normals too. Highlights follow the actual bending, not the old mesh.
+  // One watertight surface reconstructed from the approved artwork's outline.
+  // Its thickness and folded profile are generated offline; animation is a radial
+  // deformation field, so the roots and openings stretch with the same body.
   metal.onBeforeCompile = shader => {
     shader.uniforms.uLife = time;
+    shader.uniforms.uReference = { value: reference };
     shader.vertexShader = shader.vertexShader.replace('#include <common>', `
       #include <common>
       uniform float uLife;
       varying vec3 vFilmPosition;
+      varying vec2 vReferenceUv;
       vec3 alive(vec3 p) {
-        float t = uLife;
-        float reach = smoothstep(0.0, 3.8, length(p));
-        p.x += .18 * sin(p.y * 1.65 + t * .79) + .08 * sin(p.z * 2.4 - t * .51);
-        p.y += .19 * sin(p.x * 1.28 - t * .67) + .07 * cos(p.z * 2.7 + t * .8);
-        p.z += (.14 + .17 * reach) * sin(p.x * 1.5 + p.y * .85 + t * .61);
-        float twist = .12 * sin(t * .47 + p.y * .72);
-        p.xz = mat2(cos(twist), -sin(twist), sin(twist), cos(twist)) * p.xz;
-        return p * (1.0 + .025 * sin(t * .91 + p.y));
+        float angle = atan(p.y, p.x);
+        float reach = smoothstep(.3, 3.5, length(p.xy));
+        float pulse = .16 * sin(uLife*1.35 + angle*3.0) + .06 * sin(uLife*2.1 - angle*5.0);
+        float stretch = 1.0 + .035*sin(uLife*1.35) + reach*pulse;
+        p.xy *= stretch;
+        p.z *= 1.0 + .055*reach*sin(uLife*1.1 + angle*2.0);
+        return p;
       }
     `).replace('#include <beginnormal_vertex>', `
       vec3 n = normalize(normal);
-      vec3 axis = abs(n.y) < .9 ? vec3(0., 1., 0.) : vec3(1., 0., 0.);
-      vec3 tangentA = normalize(cross(axis, n));
-      vec3 tangentB = cross(n, tangentA);
-      vec3 deformedA = alive(position + tangentA * .005) - alive(position - tangentA * .005);
-      vec3 deformedB = alive(position + tangentB * .005) - alive(position - tangentB * .005);
-      vec3 objectNormal = normalize(cross(deformedA, deformedB));
-    `).replace('#include <begin_vertex>', 'vec3 transformed = alive(position); vFilmPosition = transformed;');
+      vec3 axis = abs(n.y) < .9 ? vec3(0.,1.,0.) : vec3(1.,0.,0.);
+      vec3 ta = normalize(cross(axis,n));
+      vec3 tb = cross(n,ta);
+      vec3 da = alive(position+ta*.003)-alive(position-ta*.003);
+      vec3 db = alive(position+tb*.003)-alive(position-tb*.003);
+      vec3 objectNormal = normalize(cross(da,db));
+    `).replace('#include <begin_vertex>', 'vec3 transformed = alive(position); vFilmPosition = transformed; vReferenceUv = uv;');
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `
       #include <common>
+      uniform sampler2D uReference;
       varying vec3 vFilmPosition;
+      varying vec2 vReferenceUv;
     `).replace('#include <lights_physical_fragment>', `
       #include <lights_physical_fragment>
-      material.iridescenceThickness = 210.0 + 240.0 * (.5 + .5 * sin(vFilmPosition.x * 2.4 + vFilmPosition.y * 1.8 + vFilmPosition.z));
+      material.iridescenceThickness = 180.0 + 380.0 * (.5 + .5 * sin(vFilmPosition.x * 2.8 + vFilmPosition.y * 2.0 + sin(vFilmPosition.z*5.0)));
+    `).replace('#include <opaque_fragment>', `
+      float filmAngle = dot(normalize(normal), normalize(vViewPosition));
+      float spectralPhase = filmAngle * 15.0 + vFilmPosition.x * 2.2 + vFilmPosition.y * 1.4;
+      vec3 spectral = .52 + .48 * cos(spectralPhase + vec3(0.0, 2.094, 4.189));
+      float spectralBand = pow(.5 + .5 * sin(spectralPhase * .71), 5.0) * .88;
+      outgoingLight *= mix(vec3(1.0), spectral, spectralBand);
+      #include <opaque_fragment>
+    `).replace('#include <tonemapping_fragment>', `
+      #include <tonemapping_fragment>
+      // Baked reflection detail preserves the artwork's character; live lighting
+      // supplies changing highlights on the reconstructed, deforming 3D surface.
+      vec3 referenceColor = texture2D(uReference, vReferenceUv).rgb;
+      float facing = abs(dot(normalize(normal),normalize(vViewPosition)));
+      float preserve = mix(.28,.86,smoothstep(.08,.55,facing));
+      gl_FragColor.rgb = mix(gl_FragColor.rgb, referenceColor, preserve);
     `);
   };
 
-  // A ribbed elliptical section twists along a curved spine and tapers to a
-  // needle at each end. A handful of intersecting spines forms one organism.
-  function blade(points, radius, flatten, twist, segments = 100) {
-    const curve = new THREE.CatmullRomCurve3(points.map(p => new THREE.Vector3(...p)));
-    const frames = curve.computeFrenetFrames(segments, false);
-    const sides = 24;
-    const positions = [], indices = [];
-    for (let i = 0; i <= segments; i++) {
-      const u = i / segments;
-      const center = curve.getPointAt(u);
-      const taper = Math.pow(Math.sin(Math.PI * u), 1.4);
-      const width = radius * taper + .0006;
-      for (let j = 0; j <= sides; j++) {
-        const angle = j / sides * Math.PI * 2;
-        const a = angle + u * twist;
-        const ridge = 1 + .13 * Math.cos(angle * 3 + u * 9);
-        const v = center.clone()
-          .addScaledVector(frames.normals[i], Math.cos(a) * width * ridge)
-          .addScaledVector(frames.binormals[i], Math.sin(a) * width * flatten * ridge);
-        positions.push(v.x, v.y, v.z);
-        if (i < segments && j < sides) {
-          const k = i * (sides + 1) + j;
-          indices.push(k, k + sides + 1, k + 1, k + 1, k + sides + 1, k + sides + 2);
-        }
-      }
-    }
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-    geometry.setIndex(indices);
-    geometry.computeVertexNormals();
-    // Weld the section seam normals to keep mirror reflections continuous.
-    const normals = geometry.attributes.normal;
-    for (let i = 0; i <= segments; i++) {
-      const first = i * (sides + 1), last = first + sides;
-      const n = new THREE.Vector3().fromBufferAttribute(normals, first)
-        .add(new THREE.Vector3().fromBufferAttribute(normals, last)).normalize();
-      normals.setXYZ(first, n.x, n.y, n.z);
-      normals.setXYZ(last, n.x, n.y, n.z);
-    }
-    const mesh = new THREE.Mesh(geometry, metal);
-    // Vertex deformation exceeds the original static bounding sphere.
-    mesh.frustumCulled = false;
-    sculpture.add(mesh);
-  }
-
-  // Long diagonal gesture, hooked fins and open negative spaces.
-  blade([[-5,-2.8,-.2],[-2,-1.1,.1],[0,.15,0],[1.5,1.3,.1],[3.1,4.3,-.4]], .48,.43,3.2,150);
-  blade([[-3.6,2,.1],[-1.1,.5,.2],[.6,-.2,.1],[2.3,.6,0],[5,2.8,-.3]], .48,.36,-3.5,140);
-  blade([[-1.9,3.8,-.6],[-.1,1.3,0],[.5,-.3,.3],[1.4,-1.5,0],[3.7,-3.2,-.4]], .43,.48,4.5,130);
-  blade([[-3,-2.2,.1],[-.8,-.7,.6],[1.7,.7,.3],[1.7,1.8,-.2],[3.8,3.1,-.3]], .27,.55,5,130);
-  blade([[-2.7,1.8,-.3],[-.9,1.1,.5],[1.4,.3,.7],[1.9,-.9,0],[3.1,-2.6,-.3]], .29,.4,-3.8,120);
-  blade([[-2.7,-.6,-.2],[-.5,-1.1,-.2],[1.9,-.3,.4],[2.8,1.1,.1],[4.4,1.6,-.3]], .3,.42,4.1,120);
-  blade([[-.9,-3.7,-.3],[-.7,-1.2,.1],[0,.1,.6],[-.5,1.8,.3],[.4,4,-.4]], .3,.42,3.7,120);
-  blade([[-4.2,.4,-.7],[-1.3,-.1,-.2],[.7,.9,-.1],[1.3,2.5,0],[2.5,4.8,-.4]], .24,.38,-4,110);
-  blade([[-1.8,-3,-.6],[-.5,-1,.2],[1.1,.1,.4],[3.2,-.4,-.4],[5.2,-1.2,-.7]], .2,.45,3,100);
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(meshData,12,vertexCount*3),3));
+  geometry.setIndex(new THREE.BufferAttribute(new Uint16Array(meshData,12+vertexCount*22,indexCount),1));
+  geometry.setAttribute('normal',new THREE.BufferAttribute(new Int16Array(meshData,12+vertexCount*12,vertexCount*3),3,true));
+  geometry.setAttribute('uv',new THREE.BufferAttribute(new Uint16Array(meshData,12+vertexCount*18,vertexCount*2),2,true));
+  const mesh = new THREE.Mesh(geometry,metal);
+  mesh.frustumCulled = false;
+  sculpture.add(mesh);
 
   let paused = hero.dataset.motionPaused === 'true' || matchMedia('(prefers-reduced-motion: reduce)').matches;
   let visible = true, lost = false, frame = 0, previous = 0, lastRender = 0;
@@ -157,9 +162,9 @@ function createLiquid() {
 
   function render() {
     time.value = elapsed;
-    sculpture.rotation.set(.08 + Math.sin(elapsed * .25) * .09 + pointer.y * .06,
-      -.18 + Math.sin(elapsed * .21) * .16 + pointer.x * .1,
-      -.13 + Math.sin(elapsed * .19) * .04);
+    sculpture.rotation.set(.04 + Math.sin(elapsed * .23) * .035 + pointer.y * .04,
+      -.06 + Math.sin(elapsed * .18) * .065 + pointer.x * .06,
+      .03 + Math.sin(elapsed * .16) * .025);
     renderer.render(scene, camera);
   }
   function stop() {
@@ -195,7 +200,7 @@ function createLiquid() {
     camera.updateProjectionMatrix();
     const span = 2 * camera.position.z * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
     sculpture.position.set(span * camera.aspect * (compact ? .21 : .19), span * (compact ? .11 : .01), 0);
-    sculpture.scale.setScalar(compact ? .65 : 1);
+    sculpture.scale.setScalar(compact ? .72 : 1.0);
     render();
   }
 
@@ -240,10 +245,8 @@ function createLiquid() {
   wake();
 }
 
-try {
-  createLiquid();
-} catch (error) {
+createLiquid().catch(error => {
   // WebGL-disabled devices retain the approved static composition and all UI.
   delete hero.dataset.liquidReady;
   console.warn('3D artwork unavailable; using the static artwork.', error);
-}
+});
