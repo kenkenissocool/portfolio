@@ -41,6 +41,14 @@ button[hidden] { display: none; }
 .star-field { position: absolute; inset: 0; width: 100%; height: 100%; }
 .star-fallback { position: absolute; left: 4%; top: 0; width: 63%; height: 95%; object-fit: fill; }
 .hero[data-canvas-ready] .star-fallback { display: none; }
+.orbits { z-index: 1; }
+.chrome, .liquid-canvas { z-index: 2; }
+.liquid-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; }
+.hero[data-liquid-ready] .liquid-canvas { opacity: 1; }
+.hero[data-liquid-ready] .chrome { visibility: hidden; }
+.star-field, .star-fallback { z-index: 3; pointer-events: none; }
+.spark { z-index: 4; }
+.hero-grain { z-index: 5; }
 .chrome { position: absolute; inset: -2%; width: 104%; height: 104%; max-width: none; object-fit: fill; will-change: transform; transform: translate3d(var(--metal-x,0px),var(--metal-y,0px),0) rotate(var(--metal-r,0deg)); transform-origin: 66% 48%; filter: contrast(1.025); }
 .hero-grain { position: absolute; inset: 0; background: url('../assets/grain.svg'); background-size: 180px 180px; opacity: .21; mix-blend-mode: multiply; pointer-events: none; }
 .spark { position: absolute; width: 32px; height: 64px; background: var(--ink); clip-path: polygon(50% 0,56% 41%,65% 46%,100% 50%,65% 54%,56% 59%,50% 100%,44% 59%,35% 54%,0 50%,35% 46%,44% 41%); }

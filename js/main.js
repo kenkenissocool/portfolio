@@ -100,6 +100,8 @@
   }
 
   function updateMotion() {
+    hero.dataset.motionPaused = String(paused);
+    hero.dispatchEvent(new CustomEvent('hero-motion', { detail: { paused } }));
     motionButton.setAttribute('aria-pressed', String(paused));
     motionButton.setAttribute('aria-label', paused ? 'アニメーションを再開' : 'アニメーションを停止');
     motionButton.querySelector('.motion-label').textContent = paused ? 'Motion off' : 'Motion on';
