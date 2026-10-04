@@ -42,10 +42,7 @@ button[hidden] { display: none; }
 .star-fallback { position: absolute; left: 4%; top: 0; width: 63%; height: 95%; object-fit: fill; }
 .hero[data-canvas-ready] .star-fallback { display: none; }
 .orbits { z-index: 1; }
-.chrome, .liquid-canvas { z-index: 2; }
-.liquid-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; }
-.hero[data-liquid-ready] .liquid-canvas { opacity: 1; }
-.hero[data-liquid-ready] .chrome { visibility: hidden; }
+.chrome { z-index: 2; }
 .star-field, .star-fallback { z-index: 3; pointer-events: none; }
 .spark { z-index: 4; }
 .hero-grain { z-index: 5; }
